@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>258883693384-okjvgrievrasutdgj4b7e6s6clkinjmb.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.258883693384-okjvgrievrasutdgj4b7e6s6clkinjmb</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD0emGLD4jjMmc-YxUif6oOr4thabwm1XY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>258883693384</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.manuespeso</string>
+	<key>PROJECT_ID</key>
+	<string>iosdamp2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>iosdamp2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:258883693384:ios:d34b0031acf5cc0eda617d</string>
+	<key>DATABASE_URL</key>
+	<string>https://iosdamp2.firebaseio.com</string>
+</dict>
+</plist>

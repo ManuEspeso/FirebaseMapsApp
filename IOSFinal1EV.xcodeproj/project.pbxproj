@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3669E14B535F4134C30B6792 /* Pods_IOSFinal1EV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC0A55731A3FD0B9A8D99E36 /* Pods_IOSFinal1EV.framework */; };
+		DDD63C242392CF9E0058E220 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DDD63C232392CF9E0058E220 /* GoogleService-Info.plist */; };
 		DDE1E1AB2391A023001E8E04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE1E1AA2391A023001E8E04 /* AppDelegate.swift */; };
 		DDE1E1AD2391A023001E8E04 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE1E1AC2391A023001E8E04 /* SceneDelegate.swift */; };
 		DDE1E1AF2391A023001E8E04 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE1E1AE2391A023001E8E04 /* ViewController.swift */; };
@@ -16,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08D816FA0E20292D0836F778 /* Pods-IOSFinal1EV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSFinal1EV.debug.xcconfig"; path = "Target Support Files/Pods-IOSFinal1EV/Pods-IOSFinal1EV.debug.xcconfig"; sourceTree = "<group>"; };
+		937E8B6AB586E4D7E498AE34 /* Pods-IOSFinal1EV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSFinal1EV.release.xcconfig"; path = "Target Support Files/Pods-IOSFinal1EV/Pods-IOSFinal1EV.release.xcconfig"; sourceTree = "<group>"; };
+		DDD63C232392CF9E0058E220 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DDE1E1A72391A023001E8E04 /* IOSFinal1EV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSFinal1EV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDE1E1AA2391A023001E8E04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDE1E1AC2391A023001E8E04 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +29,7 @@
 		DDE1E1B32391A026001E8E04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDE1E1B62391A026001E8E04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDE1E1B82391A026001E8E04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC0A55731A3FD0B9A8D99E36 /* Pods_IOSFinal1EV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOSFinal1EV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +37,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3669E14B535F4134C30B6792 /* Pods_IOSFinal1EV.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D58CE06C879A1C8D215C958A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				08D816FA0E20292D0836F778 /* Pods-IOSFinal1EV.debug.xcconfig */,
+				937E8B6AB586E4D7E498AE34 /* Pods-IOSFinal1EV.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		DDE1E19E2391A022001E8E04 = {
 			isa = PBXGroup;
 			children = (
 				DDE1E1A92391A023001E8E04 /* IOSFinal1EV */,
 				DDE1E1A82391A023001E8E04 /* Products */,
+				D58CE06C879A1C8D215C958A /* Pods */,
+				E35FFCB5668789821AFAEC91 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,8 +81,17 @@
 				DDE1E1B32391A026001E8E04 /* Assets.xcassets */,
 				DDE1E1B52391A026001E8E04 /* LaunchScreen.storyboard */,
 				DDE1E1B82391A026001E8E04 /* Info.plist */,
+				DDD63C232392CF9E0058E220 /* GoogleService-Info.plist */,
 			);
 			path = IOSFinal1EV;
+			sourceTree = "<group>";
+		};
+		E35FFCB5668789821AFAEC91 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EC0A55731A3FD0B9A8D99E36 /* Pods_IOSFinal1EV.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DDE1E1BB2391A026001E8E04 /* Build configuration list for PBXNativeTarget "IOSFinal1EV" */;
 			buildPhases = (
+				1DF3749AE0C701CFE6F8C55B /* [CP] Check Pods Manifest.lock */,
 				DDE1E1A32391A022001E8E04 /* Sources */,
 				DDE1E1A42391A022001E8E04 /* Frameworks */,
 				DDE1E1A52391A022001E8E04 /* Resources */,
+				B267A43C60EEA40033C67F7F /* [CP] Embed Pods Frameworks */,
+				2897788394BD8C6D1E2018DF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -126,12 +156,72 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDE1E1B72391A026001E8E04 /* LaunchScreen.storyboard in Resources */,
+				DDD63C242392CF9E0058E220 /* GoogleService-Info.plist in Resources */,
 				DDE1E1B42391A026001E8E04 /* Assets.xcassets in Resources */,
 				DDE1E1B22391A023001E8E04 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1DF3749AE0C701CFE6F8C55B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IOSFinal1EV-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2897788394BD8C6D1E2018DF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IOSFinal1EV/Pods-IOSFinal1EV-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IOSFinal1EV/Pods-IOSFinal1EV-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IOSFinal1EV/Pods-IOSFinal1EV-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B267A43C60EEA40033C67F7F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IOSFinal1EV/Pods-IOSFinal1EV-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IOSFinal1EV/Pods-IOSFinal1EV-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IOSFinal1EV/Pods-IOSFinal1EV-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DDE1E1A32391A022001E8E04 /* Sources */ = {
@@ -282,6 +372,7 @@
 		};
 		DDE1E1BC2391A026001E8E04 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08D816FA0E20292D0836F778 /* Pods-IOSFinal1EV.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -290,7 +381,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.manuespeso.IOSFinal1EV;
+				PRODUCT_BUNDLE_IDENTIFIER = com.manuespeso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -299,6 +390,7 @@
 		};
 		DDE1E1BD2391A026001E8E04 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 937E8B6AB586E4D7E498AE34 /* Pods-IOSFinal1EV.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -307,7 +399,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.manuespeso.IOSFinal1EV;
+				PRODUCT_BUNDLE_IDENTIFIER = com.manuespeso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
