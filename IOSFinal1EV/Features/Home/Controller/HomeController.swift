@@ -7,33 +7,30 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseAuth
 
 class HomeController: UIViewController {
     
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
-        
+            
+    var userName: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        loginUser()
-    }
-    
-    func loginUser() {
         
-        Auth.auth().signIn(withEmail: "manu@gmail.com", password: "password") { (user, error) in
-            let user = Auth.auth().currentUser
-            if let user = user {
-                
-                print("-------------->", user.uid)
-            } else {
-                
-                print(error!)
-            }
-        }
+        print("Este es su email: " + userName)
+    }
+    //Implements in the navigationBar a label who contains the email of the user
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let userNameNav = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        userNameNav.contentMode = .scaleAspectFit
+        userNameNav.textColor = .white
+        
+        userNameNav.text = userName
+        navigationItem.titleView = userNameNav
     }
 }
 

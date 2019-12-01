@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3669E14B535F4134C30B6792 /* Pods_IOSFinal1EV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC0A55731A3FD0B9A8D99E36 /* Pods_IOSFinal1EV.framework */; };
+		DDA9624223942C7200D17837 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA9624123942C7200D17837 /* RegisterController.swift */; };
 		DDD47E682392F55D00384D74 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD47E672392F55D00384D74 /* LoginController.swift */; };
 		DDD63C242392CF9E0058E220 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DDD63C232392CF9E0058E220 /* GoogleService-Info.plist */; };
 		DDE1E1AB2391A023001E8E04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE1E1AA2391A023001E8E04 /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		08D816FA0E20292D0836F778 /* Pods-IOSFinal1EV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSFinal1EV.debug.xcconfig"; path = "Target Support Files/Pods-IOSFinal1EV/Pods-IOSFinal1EV.debug.xcconfig"; sourceTree = "<group>"; };
 		937E8B6AB586E4D7E498AE34 /* Pods-IOSFinal1EV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSFinal1EV.release.xcconfig"; path = "Target Support Files/Pods-IOSFinal1EV/Pods-IOSFinal1EV.release.xcconfig"; sourceTree = "<group>"; };
+		DDA9624123942C7200D17837 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		DDD47E672392F55D00384D74 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		DDD63C232392CF9E0058E220 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DDE1E1A72391A023001E8E04 /* IOSFinal1EV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSFinal1EV.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +55,22 @@
 				937E8B6AB586E4D7E498AE34 /* Pods-IOSFinal1EV.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		DDA9623F23942C4500D17837 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				DDA9624023942C5100D17837 /* Controller */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		DDA9624023942C5100D17837 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DDA9624123942C7200D17837 /* RegisterController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		DDD47E652392F53C00384D74 /* Login */ = {
@@ -104,6 +122,7 @@
 		DDD63C2E2392DB580058E220 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				DDA9623F23942C4500D17837 /* Register */,
 				DDD47E652392F53C00384D74 /* Login */,
 				DDD63C2F2392DF940058E220 /* Home */,
 			);
@@ -303,6 +322,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDA9624223942C7200D17837 /* RegisterController.swift in Sources */,
 				DDE1E1AF2391A023001E8E04 /* HomeController.swift in Sources */,
 				DDD47E682392F55D00384D74 /* LoginController.swift in Sources */,
 				DDE1E1AB2391A023001E8E04 /* AppDelegate.swift in Sources */,
