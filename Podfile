@@ -11,5 +11,6 @@ target 'IOSFinal1EV' do
   	pod 'FirebaseFirestore'
   	pod 'FirebaseCore'
   	pod 'GoogleSignIn'
+	pod 'TextFieldEffects'
 
 end
