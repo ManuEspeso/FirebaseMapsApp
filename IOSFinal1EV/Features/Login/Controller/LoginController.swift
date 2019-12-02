@@ -16,7 +16,7 @@ class LoginController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBAction func loginButtonAction(_ sender: Any) {
-        checkCorrectLogin()
+        loginUser()
     }
     
     override func viewDidLoad() {
@@ -26,10 +26,13 @@ class LoginController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        //Check if the user is in core data for the autologin
         //goToHomePage()
+        emailTextField.text = ""
+        passwordTextField.text = ""
     }
     
-    func checkCorrectLogin() {
+    func loginUser() {
         guard let userEmail = emailTextField.text else {return}
         guard let userPassword = passwordTextField.text else {return}
         
