@@ -10,6 +10,8 @@ import UIKit
 
 class HomeController: UIViewController {
     
+    
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -20,9 +22,10 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         
         print("Este es su email: " + userName)
+        userNameLabel.text = userName
     }
     //Implements in the navigationBar a label who contains the email of the user
-    override func viewDidAppear(_ animated: Bool) {
+    /*override func viewDidAppear(_ animated: Bool) {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         let userNameNav = UILabel(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
@@ -31,6 +34,6 @@ class HomeController: UIViewController {
         
         userNameNav.text = userName
         navigationItem.titleView = userNameNav
-    }
+    }*/
 }
 

@@ -21,14 +21,12 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //checkAutoLogin()
+        
         loginButton.layer.cornerRadius = 8
     }
     
-    func checkAutoLogin() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-            self.performSegue(withIdentifier: "showHomePage", sender: self)
-        })
+    override func viewDidAppear(_ animated: Bool) {
+        //goToHomePage()
     }
     
     func checkCorrectLogin() {
@@ -36,25 +34,25 @@ class LoginController: UIViewController {
         guard let userPassword = passwordTextField.text else {return}
         
         Auth.auth().signIn(withEmail: userEmail, password: userPassword) { (user, error) in
-            let user = Auth.auth().currentUser
             
             if let error = error {
                 print("Failed to sign user in with error: ", error.localizedDescription)
                 return
             } else {
-                //SI SE LLEGA A ESTE PUNTO EL LOGIN ES OK POR LO QUE HABRIA QUE IR A LA PAGINA DE HOME UNICAMENTE EN ESTE LUGAR
-                print("------------>" + user!.uid)
+                self.goToHomePage()
             }
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "showHomePage") {
+    func goToHomePage() {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "HomeController") as? HomeController {
             
-            let nav = segue.destination as! UINavigationController
-            let svc = nav.topViewController as! HomeController
+            controller.modalTransitionStyle = .flipHorizontal
+            controller.modalPresentationStyle = .fullScreen
             
-            svc.userName = emailTextField.text!
+            controller.userName = emailTextField.text!
+            
+            present(controller, animated: true, completion: nil)
         }
     }
 }

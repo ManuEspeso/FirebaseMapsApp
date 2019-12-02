@@ -10,7 +10,11 @@ import UIKit
 
 class RegisterController: UIViewController {
     
+    @IBOutlet weak var registerButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        registerButton.layer.cornerRadius = 8
     }
 }
