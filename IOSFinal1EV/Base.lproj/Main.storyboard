@@ -15,25 +15,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="HOME" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s1B-wo-7gM">
-                                <rect key="frame" x="159" y="379" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOU-kw-bpm">
                                 <rect key="frame" x="10" y="49" width="54" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="54" id="mgd-eA-0rj"/>
-                                    <constraint firstAttribute="height" constant="44" id="y6h-ST-5KK"/>
+                                    <constraint firstAttribute="width" constant="54" id="8TQ-do-Sk4"/>
+                                    <constraint firstAttribute="height" constant="44" id="TYl-OT-8NL"/>
                                 </constraints>
                                 <state key="normal" image="baseline_arrow_back_white_24dp"/>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="trc-2Z-Abh"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daW-tF-bTM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userEmail" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daW-tF-bTM">
                                 <rect key="frame" x="51" y="62" width="313" height="19"/>
+                                <fontDescription key="fontDescription" name="TamilSangamMN-Bold" family="Tamil Sangam MN" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="l1x-Iu-G6K">
+                                <rect key="frame" x="0.0" y="86" width="414" height="776"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Olp-fF-q1e">
+                                <rect key="frame" x="334" y="732" width="60" height="60"/>
+                                <color key="backgroundColor" red="0.3191486469" green="0.83921568629999999" blue="0.075984729060000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="jY5-Ox-yWk"/>
+                                    <constraint firstAttribute="height" constant="60" id="qae-aD-XlY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TamilSangamMN" family="Tamil Sangam MN" pointSize="17"/>
+                                <state key="normal" title="GO">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="goButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vxJ-XH-zhN"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="206-Fw-daX">
+                                <rect key="frame" x="187" y="428" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="L3i-r5-qCj"/>
+                                    <constraint firstAttribute="width" constant="40" id="xkI-44-XYG"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knc-lT-RZz">
+                                <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="EGK-t9-46P"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="TamilSangamMN-Bold" family="Tamil Sangam MN" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -41,15 +70,30 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="daW-tF-bTM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18" id="082-am-TX7"/>
-                            <constraint firstItem="bOU-kw-bpm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="L1J-oT-FBo"/>
-                            <constraint firstItem="bOU-kw-bpm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="MBP-fa-hlC"/>
-                            <constraint firstItem="daW-tF-bTM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="mxE-SZ-Ol6"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="daW-tF-bTM" secondAttribute="trailing" constant="50" id="raG-PH-uaP"/>
+                            <constraint firstItem="daW-tF-bTM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="04F-qQ-A8B"/>
+                            <constraint firstItem="206-Fw-daX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="0e3-6c-qSX"/>
+                            <constraint firstItem="l1x-Iu-G6K" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="EsG-wZ-ZRn"/>
+                            <constraint firstItem="knc-lT-RZz" firstAttribute="top" secondItem="Olp-fF-q1e" secondAttribute="bottom" constant="20" id="HLJ-Ej-2id"/>
+                            <constraint firstItem="l1x-Iu-G6K" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="NrB-uI-lQn"/>
+                            <constraint firstItem="knc-lT-RZz" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="PxQ-DQ-Aw0"/>
+                            <constraint firstItem="bOU-kw-bpm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="UK0-ew-ipl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="daW-tF-bTM" secondAttribute="trailing" constant="50" id="Xu1-yi-ceh"/>
+                            <constraint firstItem="206-Fw-daX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="elo-ah-YH4"/>
+                            <constraint firstItem="l1x-Iu-G6K" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gRy-Aw-XcE"/>
+                            <constraint firstItem="daW-tF-bTM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="18" id="hJ1-O7-NoZ"/>
+                            <constraint firstItem="knc-lT-RZz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="i3R-Hu-yJ5"/>
+                            <constraint firstItem="bOU-kw-bpm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="mRV-Bw-ErG"/>
+                            <constraint firstItem="Olp-fF-q1e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="nAe-NG-Be1"/>
+                            <constraint firstItem="knc-lT-RZz" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="pjd-hn-y0y"/>
+                            <constraint firstItem="l1x-Iu-G6K" firstAttribute="top" secondItem="daW-tF-bTM" secondAttribute="bottom" constant="5" id="plC-Cj-x9m"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Olp-fF-q1e" secondAttribute="trailing" constant="20" id="xAI-C8-GzS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="adressDirection" destination="knc-lT-RZz" id="ETB-tW-KYy"/>
+                        <outlet property="goButton" destination="Olp-fF-q1e" id="4lZ-Ts-3T8"/>
+                        <outlet property="mapView" destination="l1x-Iu-G6K" id="5bZ-b9-2Wp"/>
                         <outlet property="userNameLabel" destination="daW-tF-bTM" id="o28-K3-pfU"/>
                     </connections>
                 </viewController>
@@ -483,5 +527,6 @@
         <image name="firebase-logo" width="180" height="180"/>
         <image name="ic_lock_outline_white_2x" width="48" height="48"/>
         <image name="ic_mail_outline_white_2x-1" width="24" height="24"/>
+        <image name="pin" width="512" height="512"/>
     </resources>
 </document>
