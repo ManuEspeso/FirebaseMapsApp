@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import FirebaseAuth
 
 class HomeController: UIViewController {
     
@@ -21,9 +22,10 @@ class HomeController: UIViewController {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBAction func backButtonPressed(_ sender: AnyObject) {
         //Sign out
-        self.dismiss(animated: true, completion: nil)
+        signOut()
+        //self.dismiss(animated: true, completion: nil)
     }
-        
+    
     let locationManager = CLLocationManager()
     let regionZoomMeters: Double = 7000
     var previusLocation: CLLocation?
@@ -37,113 +39,142 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         
         userNameLabel.text = userName
-       
+        
         mapView.delegate = self
         goButton.layer.cornerRadius = goButton.frame.size.height/2
         checkLocationServices()
     }
     
+    func signOut() {
+        let alert = UIAlertController(title: "Sign Out",
+                                      message: "Are you sure do you want to Sign Out?",
+                                      preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancel",
+                                      style: UIAlertAction.Style.default,
+                                      handler: nil))
+        alert.addAction(UIAlertAction(title: "Sign Out",
+                                      style: UIAlertAction.Style.destructive,
+                                      handler: { action in
+                                        do {
+                                            try Auth.auth().signOut()
+                                            if let controller = self.storyboard?.instantiateViewController(withIdentifier: "LoginController") as? LoginController {
+                                                
+                                                controller.modalTransitionStyle = .flipHorizontal
+                                                controller.modalPresentationStyle = .fullScreen
+                                                
+                                                self.present(controller, animated: true, completion: nil)
+                                            }
+                                        } catch let err {
+                                            print("Failed to sign out with error", err)
+                                        }
+        }))
+        self.present(alert,
+                     animated: true,
+                     completion: nil)
+    }
+    
     func checkLocationServices() {
-            if CLLocationManager.locationServicesEnabled() {
-                setupLocationManager()
-                checkLocationAuthorization()
-            } else {
-                //Show alert letting user kwon they have to turn location permissions on
-            }
-        }
-        
-        func checkLocationAuthorization() {
-            switch CLLocationManager.authorizationStatus() {
-            case .authorizedWhenInUse:
-                startTrakingUserLocation()
-            case .denied:
-                //Show alert instructing how to enable the location permissions
-                break
-            case .notDetermined:
-                locationManager.requestWhenInUseAuthorization()
-                
-            case .restricted:
-                //Show a alert letting then what's up
-                break
-            case .authorizedAlways:
-                break
-            @unknown default:
-                break
-            }
-        }
-        
-        func startTrakingUserLocation() {
-            
-            mapView.showsUserLocation = true
-            
-            centerViewOnUserLocation()
-            
-            locationManager.startUpdatingLocation()
-            previusLocation = getCenterLocation(for: mapView)
-        }
-        
-        func centerViewOnUserLocation() {
-            
-            if let location = locationManager.location?.coordinate {
-                let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionZoomMeters, longitudinalMeters: regionZoomMeters)
-                mapView.setRegion(region, animated: true)
-            }
-        }
-        
-        func setupLocationManager() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        }
-        
-        func getCenterLocation(for mapView: MKMapView) -> CLLocation {
-            let latitude = mapView.centerCoordinate.latitude
-            let longitude = mapView.centerCoordinate.longitude
-            
-            return CLLocation(latitude: latitude, longitude: longitude)
-        }
-        
-        func getDirections() {
-            guard let location = locationManager.location?.coordinate else {
-                //TODO: Inform user we don´t have their current location
-                return
-            }
-            
-            let request = createDirectionsRequest(from: location)
-            let directions = MKDirections(request: request)
-            
-            resetMapView(withNew: directions)
-            
-            directions.calculate{ [unowned self] (response, error) in
-                guard let response = response else {return}
-                
-                for route in response.routes {
-                    self.mapView.addOverlay(route.polyline)
-                    self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
-                }
-            }
-        }
-        
-        func createDirectionsRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request {
-            
-            let destinationCoordinate = getCenterLocation(for: mapView).coordinate
-            let startingLocation = MKPlacemark(coordinate: coordinate)
-            let destination = MKPlacemark(coordinate: destinationCoordinate)
-            
-            let request = MKDirections.Request()
-            request.source = MKMapItem(placemark: startingLocation)
-            request.destination = MKMapItem(placemark: destination)
-            request.transportType = .automobile
-            request.requestsAlternateRoutes = true
-            
-            return request
-        }
-        
-        func resetMapView(withNew directions: MKDirections) {
-            mapView.removeOverlays(mapView.overlays)
-            directionsArray.append(directions)
-            let _ = directionsArray.map { $0.cancel() }
+        if CLLocationManager.locationServicesEnabled() {
+            setupLocationManager()
+            checkLocationAuthorization()
+        } else {
+            //Show alert letting user kwon they have to turn location permissions on
         }
     }
+    
+    func checkLocationAuthorization() {
+        switch CLLocationManager.authorizationStatus() {
+        case .authorizedWhenInUse:
+            startTrakingUserLocation()
+        case .denied:
+            //Show alert instructing how to enable the location permissions
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+            
+        case .restricted:
+            //Show a alert letting then what's up
+            break
+        case .authorizedAlways:
+            break
+        @unknown default:
+            break
+        }
+    }
+    
+    func startTrakingUserLocation() {
+        
+        mapView.showsUserLocation = true
+        
+        centerViewOnUserLocation()
+        
+        locationManager.startUpdatingLocation()
+        previusLocation = getCenterLocation(for: mapView)
+    }
+    
+    func centerViewOnUserLocation() {
+        
+        if let location = locationManager.location?.coordinate {
+            let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionZoomMeters, longitudinalMeters: regionZoomMeters)
+            mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    func getCenterLocation(for mapView: MKMapView) -> CLLocation {
+        let latitude = mapView.centerCoordinate.latitude
+        let longitude = mapView.centerCoordinate.longitude
+        
+        return CLLocation(latitude: latitude, longitude: longitude)
+    }
+    
+    func getDirections() {
+        guard let location = locationManager.location?.coordinate else {
+            //TODO: Inform user we don´t have their current location
+            return
+        }
+        
+        let request = createDirectionsRequest(from: location)
+        let directions = MKDirections(request: request)
+        
+        resetMapView(withNew: directions)
+        
+        directions.calculate{ [unowned self] (response, error) in
+            guard let response = response else {return}
+            
+            for route in response.routes {
+                self.mapView.addOverlay(route.polyline)
+                self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+            }
+        }
+    }
+    
+    func createDirectionsRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request {
+        
+        let destinationCoordinate = getCenterLocation(for: mapView).coordinate
+        let startingLocation = MKPlacemark(coordinate: coordinate)
+        let destination = MKPlacemark(coordinate: destinationCoordinate)
+        
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: startingLocation)
+        request.destination = MKMapItem(placemark: destination)
+        request.transportType = .automobile
+        request.requestsAlternateRoutes = true
+        
+        return request
+    }
+    
+    func resetMapView(withNew directions: MKDirections) {
+        mapView.removeOverlays(mapView.overlays)
+        directionsArray.append(directions)
+        let _ = directionsArray.map { $0.cancel() }
+    }
+}
 
 extension HomeController: CLLocationManagerDelegate {
     
