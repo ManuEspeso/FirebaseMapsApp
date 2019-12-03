@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import CoreData
 
 class LoginController: UIViewController {
     
@@ -19,15 +20,16 @@ class LoginController: UIViewController {
         loginUser()
     }
     
+    var email: String = ""
+    var id: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loginButton.layer.cornerRadius = 8
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //Check if the user is in core data for the autologin
-        //goToHomePage()
+        //autoLogIn()
         emailTextField.text = ""
         passwordTextField.text = ""
     }
@@ -42,8 +44,45 @@ class LoginController: UIViewController {
                 print("Failed to sign user in with error: ", error.localizedDescription)
                 return
             } else {
-                self.goToHomePage()
+                
+                if let user = Auth.auth().currentUser {
+                    _ = self.saveInCoreData(email: userEmail, id: user.uid)
+                    self.goToHomePage()
+                } else {
+                    print(error!)
+                }
             }
+        }
+    }
+    
+    func saveInCoreData(email: String, id: String) -> Bool {
+    
+    let personaEntity = NSEntityDescription.entity(forEntityName: "Usuarios", in: PersistenceService.context)!
+    let usuario = NSManagedObject(entity: personaEntity, insertInto: PersistenceService.context)
+    
+    usuario.setValue(email, forKey: "email")
+    usuario.setValue(id, forKey: "id")
+    
+    return PersistenceService.saveContext()
+        
+    }
+    
+    func autoLogIn() {
+        let context = PersistenceService.context
+        let fechtRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Usuarios")
+        
+        do {
+            let result = try context.fetch(fechtRequest)
+            
+            for data in result as! [NSManagedObject] {
+                email = data.value(forKey: "email") as! String
+                id = data.value(forKey: "id") as! String
+            }
+            if(!email.isEmpty && !id.isEmpty) {
+             goToHomePage()
+            }
+        } catch {
+            print("ERROR, SOMETHING WRONG")
         }
     }
     
@@ -53,7 +92,7 @@ class LoginController: UIViewController {
             controller.modalTransitionStyle = .flipHorizontal
             controller.modalPresentationStyle = .fullScreen
             
-            controller.userName = emailTextField.text!
+            controller.userEmail = emailTextField.text!
             
             present(controller, animated: true, completion: nil)
         }

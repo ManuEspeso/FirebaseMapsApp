@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3669E14B535F4134C30B6792 /* Pods_IOSFinal1EV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC0A55731A3FD0B9A8D99E36 /* Pods_IOSFinal1EV.framework */; };
+		DDA8D3C32396F85000C06DC9 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA8D3C22396F85000C06DC9 /* ProfileController.swift */; };
+		DDA8D3C523970FA100C06DC9 /* PersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA8D3C423970FA100C06DC9 /* PersistanceService.swift */; };
+		DDA8D3C82397104C00C06DC9 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DDA8D3C62397104C00C06DC9 /* DataModel.xcdatamodeld */; };
 		DDA9624223942C7200D17837 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA9624123942C7200D17837 /* RegisterController.swift */; };
 		DDD47E682392F55D00384D74 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDD47E672392F55D00384D74 /* LoginController.swift */; };
 		DDD63C242392CF9E0058E220 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DDD63C232392CF9E0058E220 /* GoogleService-Info.plist */; };
@@ -22,6 +25,9 @@
 /* Begin PBXFileReference section */
 		08D816FA0E20292D0836F778 /* Pods-IOSFinal1EV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSFinal1EV.debug.xcconfig"; path = "Target Support Files/Pods-IOSFinal1EV/Pods-IOSFinal1EV.debug.xcconfig"; sourceTree = "<group>"; };
 		937E8B6AB586E4D7E498AE34 /* Pods-IOSFinal1EV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSFinal1EV.release.xcconfig"; path = "Target Support Files/Pods-IOSFinal1EV/Pods-IOSFinal1EV.release.xcconfig"; sourceTree = "<group>"; };
+		DDA8D3C22396F85000C06DC9 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		DDA8D3C423970FA100C06DC9 /* PersistanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceService.swift; sourceTree = "<group>"; };
+		DDA8D3C72397104C00C06DC9 /* PersistanceService.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PersistanceService.xcdatamodel; sourceTree = "<group>"; };
 		DDA9624123942C7200D17837 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		DDD47E672392F55D00384D74 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		DDD63C232392CF9E0058E220 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -55,6 +61,22 @@
 				937E8B6AB586E4D7E498AE34 /* Pods-IOSFinal1EV.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		DDA8D3C02396F82900C06DC9 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				DDA8D3C12396F83700C06DC9 /* Controller */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		DDA8D3C12396F83700C06DC9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DDA8D3C22396F85000C06DC9 /* ProfileController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		DDA9623F23942C4500D17837 /* Register */ = {
@@ -92,6 +114,8 @@
 		DDD63C292392DAF80058E220 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DDA8D3C423970FA100C06DC9 /* PersistanceService.swift */,
+				DDA8D3C62397104C00C06DC9 /* DataModel.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -122,6 +146,7 @@
 		DDD63C2E2392DB580058E220 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				DDA8D3C02396F82900C06DC9 /* Profile */,
 				DDA9623F23942C4500D17837 /* Register */,
 				DDD47E652392F53C00384D74 /* Login */,
 				DDD63C2F2392DF940058E220 /* Home */,
@@ -323,10 +348,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDA9624223942C7200D17837 /* RegisterController.swift in Sources */,
+				DDA8D3C82397104C00C06DC9 /* DataModel.xcdatamodeld in Sources */,
 				DDE1E1AF2391A023001E8E04 /* HomeController.swift in Sources */,
 				DDD47E682392F55D00384D74 /* LoginController.swift in Sources */,
 				DDE1E1AB2391A023001E8E04 /* AppDelegate.swift in Sources */,
 				DDE1E1AD2391A023001E8E04 /* SceneDelegate.swift in Sources */,
+				DDA8D3C523970FA100C06DC9 /* PersistanceService.swift in Sources */,
+				DDA8D3C32396F85000C06DC9 /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +552,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DDA8D3C62397104C00C06DC9 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DDA8D3C72397104C00C06DC9 /* PersistanceService.xcdatamodel */,
+			);
+			currentVersion = DDA8D3C72397104C00C06DC9 /* PersistanceService.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DDE1E19F2391A022001E8E04 /* Project object */;
 }

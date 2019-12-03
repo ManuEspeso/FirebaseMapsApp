@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class RegisterController: UIViewController {
     
@@ -26,7 +27,7 @@ class RegisterController: UIViewController {
         super.viewDidLoad()
         
         registerButton.layer.cornerRadius = 8
-    
+        
         db = Firestore.firestore()
     }
     
@@ -44,6 +45,7 @@ class RegisterController: UIViewController {
                 let user = Auth.auth().currentUser
                 
                 if let user = user {
+                    _ = self.saveInCoreData(email: userEmail, id: user.uid)
                     self.insertUsersOnDB(userId: user.uid, userName: userName, userEmail: userEmail)
                     self.goToHomePage()
                 } else {
@@ -51,6 +53,18 @@ class RegisterController: UIViewController {
                 }
             }
         }
+    }
+    
+    func saveInCoreData(email: String, id: String) -> Bool {
+        
+        let personaEntity = NSEntityDescription.entity(forEntityName: "Usuarios", in: PersistenceService.context)!
+        let usuario = NSManagedObject(entity: personaEntity, insertInto: PersistenceService.context)
+        
+        usuario.setValue(email, forKey: "email")
+        usuario.setValue(id, forKey: "id")
+        
+        return PersistenceService.saveContext()
+        
     }
     
     func insertUsersOnDB(userId: String, userName: String, userEmail: String) {
@@ -75,7 +89,7 @@ class RegisterController: UIViewController {
             controller.modalTransitionStyle = .flipHorizontal
             controller.modalPresentationStyle = .fullScreen
             
-            controller.userName = emailTextField.text!
+            controller.userEmail = emailTextField.text!
             
             present(controller, animated: true, completion: nil)
         }

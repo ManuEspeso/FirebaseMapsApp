@@ -6,11 +6,11 @@ target 'IOSFinal1EV' do
   use_frameworks!
 
   # Pods for IOSFinal1EV
-	pod 'Firebase'
+	  pod 'Firebase'
   	pod 'FirebaseAuth'
   	pod 'FirebaseFirestore'
   	pod 'FirebaseCore'
   	pod 'GoogleSignIn'
-	pod 'TextFieldEffects'
+	  pod 'TextFieldEffects'
 
 end

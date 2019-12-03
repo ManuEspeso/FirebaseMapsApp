@@ -8,7 +8,9 @@
 
 import UIKit
 import MapKit
+import Firebase
 import FirebaseAuth
+import CoreData
 
 class HomeController: UIViewController {
     
@@ -20,10 +22,11 @@ class HomeController: UIViewController {
     }
     
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBAction func profileButton(_ sender: Any) {
+        goToProfile()
+    }
     @IBAction func backButtonPressed(_ sender: AnyObject) {
-        //Sign out
         signOut()
-        //self.dismiss(animated: true, completion: nil)
     }
     
     let locationManager = CLLocationManager()
@@ -33,17 +36,28 @@ class HomeController: UIViewController {
     let geoCoder = CLGeocoder()
     var directionsArray: [MKDirections] = []
     
-    var userName: String = ""
+    var userEmail: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        userNameLabel.text = userName
+                
+        userNameLabel.text = userEmail
         
         mapView.delegate = self
         goButton.layer.cornerRadius = goButton.frame.size.height/2
         checkLocationServices()
     }
+
+    func goToProfile() {
+        if let controller = self.storyboard?.instantiateViewController(withIdentifier: "ProfileController") as? ProfileController {
+            
+            controller.modalTransitionStyle = .flipHorizontal
+            controller.userEmail = userEmail
+            
+            self.present(controller, animated: true, completion: nil)
+        }
+    }
+    
     
     func signOut() {
         let alert = UIAlertController(title: "Sign Out",
