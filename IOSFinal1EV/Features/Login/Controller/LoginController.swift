@@ -10,8 +10,9 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import CoreData
+import GoogleSignIn
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, GIDSignInDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -20,18 +21,30 @@ class LoginController: UIViewController {
         loginUser()
     }
     
+    @IBAction func loginButtonGoogle(_ sender: Any) {
+        GIDSignIn.sharedInstance()?.signIn()
+    }
+    
     var email: String = ""
     var id: String = ""
+    var db: Firestore!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.layer.cornerRadius = 8
+        
+        GIDSignIn.sharedInstance().presentingViewController = self
+        
+        db = Firestore.firestore()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         autoLogIn()
+        
         emailTextField.text = ""
         passwordTextField.text = ""
+        
+        GIDSignIn.sharedInstance()?.delegate = self
     }
     
     func loginUser() {
@@ -55,6 +68,32 @@ class LoginController: UIViewController {
         }
     }
     
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("Failed to sign in with error:", error)
+            return
+        }
+        
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        
+        Auth.auth().signIn(with: credential) { (result, error) in
+            
+            if let error = error {
+                print("Failed to sign in and retrieve data with error:", error)
+                return
+            }
+            
+            guard let uid = result?.user.uid else { return }
+            guard let email = result?.user.email else { return }
+            guard let username = result?.user.displayName else { return }
+            
+            _ = self.saveInCoreData(email: email, id: uid)
+            self.insertUsersOnDB(userId: uid, userName: username, userEmail: email)
+            self.goToHomePage()
+        }
+    }
+    
     func saveInCoreData(email: String, id: String) -> Bool {
         
         let personaEntity = NSEntityDescription.entity(forEntityName: "Usuarios", in: PersistenceService.context)!
@@ -64,7 +103,22 @@ class LoginController: UIViewController {
         usuario.setValue(id, forKey: "id")
         
         return PersistenceService.saveContext()
+    }
+    
+    func insertUsersOnDB(userId: String, userName: String, userEmail: String) {
+        let docData: [String: Any] = [
+            "username": userName,
+            "email": userEmail
+        ]
         
+        db.collection("users").document(userId).setData(docData) { err in
+            
+            if let err = err {
+                print("Error writing user on database: \(err)")
+            } else {
+                print("User successfully writte in database!")
+            }
+        }
     }
     
     func autoLogIn() {
@@ -91,8 +145,6 @@ class LoginController: UIViewController {
             
             controller.modalTransitionStyle = .flipHorizontal
             controller.modalPresentationStyle = .fullScreen
-            
-            //controller.userEmail = emailTextField.text!
             
             present(controller, animated: true, completion: nil)
         }

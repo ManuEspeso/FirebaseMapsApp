@@ -65,7 +65,7 @@ class HomeController: UIViewController {
     
     func goToProfile() {
         if let controller = self.storyboard?.instantiateViewController(withIdentifier: "ProfileController") as? ProfileController {
-      
+            
             controller.modalTransitionStyle = .flipHorizontal
             controller.userEmail = userEmail
             
@@ -110,9 +110,10 @@ class HomeController: UIViewController {
         do {
             let test = try context.fetch(fechtRequest)
             
-            let objectToDelete = test[0] as! NSManagedObject
-            context.delete(objectToDelete)
-            
+            if (!test.isEmpty) {
+                let objectToDelete = test[0] as! NSManagedObject
+                context.delete(objectToDelete)
+            }
             do {
                 try context.save()
             }

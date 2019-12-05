@@ -29,7 +29,7 @@ class ProfileController: UIViewController {
         
         getDataFromCoreData()
         getDataFromFirebase()
-        
+        print("aqui estammos", userEmail)
         profileImage.layer.borderWidth = 2
         profileImage.layer.masksToBounds = false
         profileImage.layer.borderColor = UIColor.black.cgColor
@@ -45,7 +45,16 @@ class ProfileController: UIViewController {
                 } else {
                     for document in querySnapshot!.documents {
                         print("\(document.documentID) => \(document.data())")
+                        let usernameFirebase = document.data().index(forKey: "username")
+                        let usernameValue = document.data()[usernameFirebase!].value as! String
+                        
+                        let emailFirebase = document.data().index(forKey: "email")
+                        let emailValue = document.data()[emailFirebase!].value as! String
+
+                        self.profileUserName.text = usernameValue
+                        self.profileEmail.text = emailValue
                     }
+                    
                 }
         }
     }
@@ -61,14 +70,14 @@ class ProfileController: UIViewController {
                 email = data.value(forKey: "email") as! String
                 id = data.value(forKey: "id") as! String
             }
-            insertDatasInProfile(email: email, id: id)
+            insertDatasInProfile(id: id)
         } catch {
             print("ERROR, SOMETHING WRONG")
         }
     }
     
-    func insertDatasInProfile(email: String, id: String) {
-        profileEmail.text = email
+    func insertDatasInProfile(id: String) {
+        //profileEmail.text = email
         profileId.text = id
     }
 }

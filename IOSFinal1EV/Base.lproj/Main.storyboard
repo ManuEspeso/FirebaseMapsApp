@@ -59,7 +59,7 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knc-lT-RZz">
                                 <rect key="frame" x="0.0" y="812" width="414" height="50"/>
-                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="EGK-t9-46P"/>
                                 </constraints>
@@ -79,7 +79,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="daW-tF-bTM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="51" id="04F-qQ-A8B"/>
                             <constraint firstItem="206-Fw-daX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="0e3-6c-qSX"/>
@@ -148,7 +148,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Cw7-CA-3Lo" firstAttribute="top" secondItem="cko-iD-zeW" secondAttribute="bottom" constant="50" id="12Q-Kr-BoH"/>
                             <constraint firstItem="Xz9-6d-e78" firstAttribute="trailing" secondItem="O4N-8E-eRV" secondAttribute="trailing" constant="141" id="3M4-cP-ceU"/>
@@ -232,7 +232,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="ftD-NN-4q8" secondAttribute="bottom" constant="-15" id="CPh-FF-WsK"/>
                                     <constraint firstItem="xeU-p1-hSZ" firstAttribute="leading" secondItem="ftD-NN-4q8" secondAttribute="trailing" constant="15" id="FD5-XM-RmW"/>
@@ -280,7 +280,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="5Hq-q1-vVr"/>
                                     <constraint firstAttribute="trailing" secondItem="3sN-aF-ahv" secondAttribute="trailing" id="9cX-Dm-DfD"/>
@@ -339,15 +339,21 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AQUI IRA EL BOTON DE GOOGLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfJ-Hb-ppz">
-                                <rect key="frame" x="80" y="604" width="256" height="21"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jiD-2b-qVB" customClass="GIDSignInButton">
+                                <rect key="frame" x="95" y="642" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0d4-ZT-DTq">
+                                <rect key="frame" x="191" y="593" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="loginButtonGoogle:" destination="0lS-yA-baG" eventType="touchUpInside" id="OI4-9h-3vi"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="KrN-ym-ce2" firstAttribute="top" secondItem="1U1-cL-Qe0" secondAttribute="bottom" constant="61" id="1LE-Z2-Jnm"/>
                             <constraint firstItem="GYA-ZC-nns" firstAttribute="top" secondItem="KrN-ym-ce2" secondAttribute="bottom" constant="35" id="2Fm-Le-mUl"/>
@@ -435,7 +441,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="WcD-Y4-C4R" secondAttribute="bottom" constant="5" id="7dS-ko-g8y"/>
                                     <constraint firstItem="OrB-p3-IxI" firstAttribute="top" secondItem="Lj5-9e-xmh" secondAttribute="top" id="ARS-sW-jaB"/>
@@ -483,7 +489,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="LWU-h4-PDi" secondAttribute="trailing" id="4Ys-QH-xrh"/>
                                     <constraint firstItem="LWU-h4-PDi" firstAttribute="leading" secondItem="yfX-K4-7Y4" secondAttribute="trailing" constant="15" id="7Fp-zJ-ESK"/>
@@ -531,7 +537,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="y2e-tt-0b3" firstAttribute="leading" secondItem="acX-YE-YgU" secondAttribute="trailing" constant="15" id="2un-Ez-LB2"/>
                                     <constraint firstAttribute="width" constant="353" id="89z-E3-eRF"/>
@@ -599,15 +605,8 @@
                                     <segue destination="0lS-yA-baG" kind="presentation" identifier="showLoginPage" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="qYa-ub-nkt"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AQUI IRA EL BOTON DE GOOGLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zTp-aA-640">
-                                <rect key="frame" x="84" y="652" width="256" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="29T-St-VIy" firstAttribute="trailing" secondItem="ybF-oz-wEF" secondAttribute="trailing" constant="80" id="1vR-w6-aBH"/>
                             <constraint firstItem="ERb-4p-QVt" firstAttribute="top" secondItem="F64-Nw-CgL" secondAttribute="bottom" constant="45" id="2Pj-s8-e6A"/>
@@ -658,7 +657,4 @@
         <image name="pin" width="512" height="512"/>
         <image name="user" width="512" height="512"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="4kc-6H-xpn"/>
-    </inferredMetricsTieBreakers>
 </document>
