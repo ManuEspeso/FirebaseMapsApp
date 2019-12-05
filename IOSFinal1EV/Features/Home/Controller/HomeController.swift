@@ -20,7 +20,6 @@ class HomeController: UIViewController {
     @IBAction func goButtonTapped(_ sender: UIButton) {
         getDirections()
     }
-    
     @IBOutlet weak var userNameLabel: UILabel!
     @IBAction func profileButton(_ sender: Any) {
         goToProfile()
@@ -30,7 +29,7 @@ class HomeController: UIViewController {
     }
     
     let locationManager = CLLocationManager()
-    let regionZoomMeters: Double = 7000
+    let regionZoomMeters: Double = 4000
     var previusLocation: CLLocation?
     
     let geoCoder = CLGeocoder()
@@ -40,24 +39,39 @@ class HomeController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        userNameLabel.text = userEmail
+        
+        setUserEmailTitle()
         
         mapView.delegate = self
         goButton.layer.cornerRadius = goButton.frame.size.height/2
         checkLocationServices()
     }
-
+    
+    func setUserEmailTitle() {
+        let context = PersistenceService.context
+        let fechtRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Usuarios")
+        
+        do {
+            let result = try context.fetch(fechtRequest)
+            
+            for data in result as! [NSManagedObject] {
+                userEmail = data.value(forKey: "email") as! String
+            }
+            userNameLabel.text = userEmail
+        } catch {
+            print("ERROR, SOMETHING WRONG")
+        }
+    }
+    
     func goToProfile() {
         if let controller = self.storyboard?.instantiateViewController(withIdentifier: "ProfileController") as? ProfileController {
-            
+      
             controller.modalTransitionStyle = .flipHorizontal
             controller.userEmail = userEmail
             
             self.present(controller, animated: true, completion: nil)
         }
     }
-    
     
     func signOut() {
         let alert = UIAlertController(title: "Sign Out",
@@ -72,6 +86,7 @@ class HomeController: UIViewController {
                                       handler: { action in
                                         do {
                                             try Auth.auth().signOut()
+                                            self.deleteDataFromCoreData()
                                             if let controller = self.storyboard?.instantiateViewController(withIdentifier: "LoginController") as? LoginController {
                                                 
                                                 controller.modalTransitionStyle = .flipHorizontal
@@ -86,6 +101,28 @@ class HomeController: UIViewController {
         self.present(alert,
                      animated: true,
                      completion: nil)
+    }
+    
+    func deleteDataFromCoreData() {
+        let context = PersistenceService.context
+        let fechtRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Usuarios")
+        
+        do {
+            let test = try context.fetch(fechtRequest)
+            
+            let objectToDelete = test[0] as! NSManagedObject
+            context.delete(objectToDelete)
+            
+            do {
+                try context.save()
+            }
+            catch {
+                print(error)
+            }
+        }
+        catch {
+            print(error)
+        }
     }
     
     func checkLocationServices() {
@@ -192,13 +229,13 @@ class HomeController: UIViewController {
 
 extension HomeController: CLLocationManagerDelegate {
     
-    /*func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-     guard let location = locations.last else { return }
-     let center = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
-     let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionZoomMeters, longitudinalMeters: regionZoomMeters)
-     
-     mapView.setRegion(region, animated: true)
-     }*/
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        let center = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
+        let region = MKCoordinateRegion.init(center: center, latitudinalMeters: regionZoomMeters, longitudinalMeters: regionZoomMeters)
+        
+        mapView.setRegion(region, animated: true)
+    }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         checkLocationAuthorization()

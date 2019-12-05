@@ -39,14 +39,14 @@ class ProfileController: UIViewController {
     
     func getDataFromFirebase() {
         db.collection("users").whereField("email", isEqualTo: userEmail)
-          .getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                    }
                 }
-            }
         }
     }
     

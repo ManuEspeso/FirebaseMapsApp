@@ -658,4 +658,7 @@
         <image name="pin" width="512" height="512"/>
         <image name="user" width="512" height="512"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="4kc-6H-xpn"/>
+    </inferredMetricsTieBreakers>
 </document>

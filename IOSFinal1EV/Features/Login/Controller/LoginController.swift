@@ -29,7 +29,7 @@ class LoginController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        //autoLogIn()
+        autoLogIn()
         emailTextField.text = ""
         passwordTextField.text = ""
     }
@@ -56,14 +56,14 @@ class LoginController: UIViewController {
     }
     
     func saveInCoreData(email: String, id: String) -> Bool {
-    
-    let personaEntity = NSEntityDescription.entity(forEntityName: "Usuarios", in: PersistenceService.context)!
-    let usuario = NSManagedObject(entity: personaEntity, insertInto: PersistenceService.context)
-    
-    usuario.setValue(email, forKey: "email")
-    usuario.setValue(id, forKey: "id")
-    
-    return PersistenceService.saveContext()
+        
+        let personaEntity = NSEntityDescription.entity(forEntityName: "Usuarios", in: PersistenceService.context)!
+        let usuario = NSManagedObject(entity: personaEntity, insertInto: PersistenceService.context)
+        
+        usuario.setValue(email, forKey: "email")
+        usuario.setValue(id, forKey: "id")
+        
+        return PersistenceService.saveContext()
         
     }
     
@@ -79,7 +79,7 @@ class LoginController: UIViewController {
                 id = data.value(forKey: "id") as! String
             }
             if(!email.isEmpty && !id.isEmpty) {
-             goToHomePage()
+                goToHomePage()
             }
         } catch {
             print("ERROR, SOMETHING WRONG")
@@ -92,7 +92,7 @@ class LoginController: UIViewController {
             controller.modalTransitionStyle = .flipHorizontal
             controller.modalPresentationStyle = .fullScreen
             
-            controller.userEmail = emailTextField.text!
+            //controller.userEmail = emailTextField.text!
             
             present(controller, animated: true, completion: nil)
         }
