@@ -35,19 +35,22 @@ class HomeController: UIViewController {
     let geoCoder = CLGeocoder()
     var directionsArray: [MKDirections] = []
     
+    var db: Firestore!
     var userEmail: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUserEmailTitle()
+        db = Firestore.firestore()
+        
+        getEmailFromCoreData()
         
         mapView.delegate = self
         goButton.layer.cornerRadius = goButton.frame.size.height/2
         checkLocationServices()
     }
     
-    func setUserEmailTitle() {
+    func getEmailFromCoreData() {
         let context = PersistenceService.context
         let fechtRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Usuarios")
         
@@ -57,9 +60,26 @@ class HomeController: UIViewController {
             for data in result as! [NSManagedObject] {
                 userEmail = data.value(forKey: "email") as! String
             }
-            userNameLabel.text = userEmail
+            setUserNameTitle()
         } catch {
             print("ERROR, SOMETHING WRONG")
+        }
+    }
+    
+    func setUserNameTitle() {
+        db.collection("users").whereField("email", isEqualTo: userEmail)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let usernameFirebase = document.data().index(forKey: "username")
+                        let usernameValue = document.data()[usernameFirebase!].value as! String
+                        
+                        self.userNameLabel.text = usernameValue
+                    }
+                    
+                }
         }
     }
     

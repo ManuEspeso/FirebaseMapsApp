@@ -89,8 +89,6 @@ class RegisterController: UIViewController {
             controller.modalTransitionStyle = .flipHorizontal
             controller.modalPresentationStyle = .fullScreen
             
-            //controller.userEmail = emailTextField.text!
-            
             present(controller, animated: true, completion: nil)
         }
     }
