@@ -19,7 +19,6 @@ class ProfileController: UIViewController {
     
     var db: Firestore!
     var userEmail: String = ""
-    var email: String = ""
     var id: String = ""
     
     override func viewDidLoad() {
@@ -36,7 +35,7 @@ class ProfileController: UIViewController {
         profileImage.layer.cornerRadius = profileImage.frame.height/2
         profileImage.clipsToBounds = true
     }
-    
+    //This funcion get the dayas from the firebase, but only takes the datas who had a specifyc email. This email is provided by the segue from pass to Home View to Profile View
     func getDataFromFirebase() {
         db.collection("users").whereField("email", isEqualTo: userEmail)
             .getDocuments() { (querySnapshot, err) in
@@ -44,6 +43,7 @@ class ProfileController: UIViewController {
                     print("Error getting documents: \(err)")
                 } else {
                     for document in querySnapshot!.documents {
+                        //Capture the elements from the firebase database and set in the labels in the view
                         let usernameFirebase = document.data().index(forKey: "username")
                         let usernameValue = document.data()[usernameFirebase!].value as! String
                         
@@ -57,7 +57,7 @@ class ProfileController: UIViewController {
                 }
         }
     }
-    
+    //As in the Firebase Database the id is not in the datas, with this function capture the id from the core data for set in the label
     func getDataFromCoreData() {
         let context = PersistenceService.context
         let fechtRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Usuarios")
@@ -66,7 +66,6 @@ class ProfileController: UIViewController {
             let result = try context.fetch(fechtRequest)
             
             for data in result as! [NSManagedObject] {
-                email = data.value(forKey: "email") as! String
                 id = data.value(forKey: "id") as! String
             }
             profileId.text = id

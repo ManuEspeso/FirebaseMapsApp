@@ -120,13 +120,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		DDD63C2A2392DB030058E220 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		DDD63C2B2392DB0C0058E220 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,7 +188,6 @@
 				DDD63C232392CF9E0058E220 /* GoogleService-Info.plist */,
 				DDD63C2C2392DB170058E220 /* App */,
 				DDD63C2B2392DB0C0058E220 /* Resources */,
-				DDD63C2A2392DB030058E220 /* Extensions */,
 				DDD63C292392DAF80058E220 /* Model */,
 				DDD63C2E2392DB580058E220 /* Features */,
 				DDE1E1AC2391A023001E8E04 /* SceneDelegate.swift */,

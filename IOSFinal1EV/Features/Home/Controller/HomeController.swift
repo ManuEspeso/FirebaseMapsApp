@@ -49,7 +49,7 @@ class HomeController: UIViewController {
         goButton.layer.cornerRadius = goButton.frame.size.height/2
         checkLocationServices()
     }
-    
+    //Set in to the UINavigationController a label in the center who contains the userName
     override func viewDidAppear(_ animated: Bool) {
         
         let label = UILabel(frame: CGRect(x: 10, y: 0, width: 50, height: 40))
@@ -63,7 +63,7 @@ class HomeController: UIViewController {
 
         self.navigationItem.titleView = label
     }
-    
+    //In this method I'm taking the email from coredata to later check this email(user) in the Firebase database
     func getEmailFromCoreData() {
         let context = PersistenceService.context
         let fechtRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Usuarios")
@@ -72,14 +72,16 @@ class HomeController: UIViewController {
             let result = try context.fetch(fechtRequest)
             
             for data in result as! [NSManagedObject] {
+                //Save the email from coredata into a variable for do the check later
                 userEmail = data.value(forKey: "email") as! String
             }
+            //When all the code for get the email from coredata it's ok call the method for get datas from firebase database
             setUserNameTitle()
         } catch {
             print("ERROR, SOMETHING WRONG")
         }
     }
-    
+    //Get the userName from the Firebase database for insert this value in to the label in the UINavigationController
     func setUserNameTitle() {
         db.collection("users").whereField("email", isEqualTo: userEmail)
             .getDocuments() { (querySnapshot, err) in
@@ -89,14 +91,14 @@ class HomeController: UIViewController {
                     for document in querySnapshot!.documents {
                         let usernameFirebase = document.data().index(forKey: "username")
                         let usernameValue = document.data()[usernameFirebase!].value as! String
-                        
+                        //Save the userName from the database in a variable who i'm calling avery time that the view is appear(viewDidAppear)
                         self.userName = usernameValue
                     }
                     
                 }
         }
     }
-    
+    //This method if the same if I create a segue in the storyboard but how i don't now set a condicion in a segue for run it i prefer create it manualy and call it when needed
     func goToProfile() {
         if let controller = self.storyboard?.instantiateViewController(withIdentifier: "ProfileController") as? ProfileController {
             
@@ -106,7 +108,7 @@ class HomeController: UIViewController {
             self.present(controller, animated: true, completion: nil)
         }
     }
-    
+    //This method it's a easy form to create a alert. I'm create this alert for when you select the button to logOut alert if you are sure to close your session and delete your datas from the core data
     func signOut() {
         let alert = UIAlertController(title: "Sign Out",
                                       message: "Are you sure do you want to Sign Out?",
@@ -119,8 +121,11 @@ class HomeController: UIViewController {
                                       style: UIAlertAction.Style.destructive,
                                       handler: { action in
                                         do {
+                                            //Sign out the session in Firebase
                                             try Auth.auth().signOut()
+                                            //Delete user datas from the core data
                                             self.deleteDataFromCoreData()
+                                            //Segue for go to the Login View
                                             if let controller = self.storyboard?.instantiateViewController(withIdentifier: "LoginController") as? LoginController {
                                                 
                                                 controller.modalTransitionStyle = .flipHorizontal
@@ -136,7 +141,7 @@ class HomeController: UIViewController {
                      animated: true,
                      completion: nil)
     }
-    
+    //This method is call it when the user log out and delete all the user elements in core data
     func deleteDataFromCoreData() {
         let context = PersistenceService.context
         let fechtRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Usuarios")
@@ -159,7 +164,7 @@ class HomeController: UIViewController {
             print(error)
         }
     }
-    
+    //This method check if the location services is enabled for can offer the maps services
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             setupLocationManager()
@@ -168,7 +173,7 @@ class HomeController: UIViewController {
             //Show alert letting user kwon they have to turn location permissions on
         }
     }
-    
+    //Check if the user autorized to use his location in the app
     func checkLocationAuthorization() {
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse:
@@ -188,7 +193,7 @@ class HomeController: UIViewController {
             break
         }
     }
-    
+    //Get every time the user location and track it for if the user is moving around any place
     func startTrakingUserLocation() {
         
         mapView.showsUserLocation = true
@@ -198,7 +203,7 @@ class HomeController: UIViewController {
         locationManager.startUpdatingLocation()
         previusLocation = getCenterLocation(for: mapView)
     }
-    
+    //Detect the user location and when the location is the maps do a zoom in the user location
     func centerViewOnUserLocation() {
         
         if let location = locationManager.location?.coordinate {
@@ -211,14 +216,14 @@ class HomeController: UIViewController {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
-    
+    //Get the user position for later permit did a zoom in the mapsView
     func getCenterLocation(for mapView: MKMapView) -> CLLocation {
         let latitude = mapView.centerCoordinate.latitude
         let longitude = mapView.centerCoordinate.longitude
         
         return CLLocation(latitude: latitude, longitude: longitude)
     }
-    
+    //Takes the addresses to the user wants to go
     func getDirections() {
         guard let location = locationManager.location?.coordinate else {
             //TODO: Inform user we don´t have their current location
@@ -239,7 +244,7 @@ class HomeController: UIViewController {
             }
         }
     }
-    
+    //Set a rute from the user location to the destiny that the user wants to go
     func createDirectionsRequest(from coordinate: CLLocationCoordinate2D) -> MKDirections.Request {
         
         let destinationCoordinate = getCenterLocation(for: mapView).coordinate
@@ -254,7 +259,7 @@ class HomeController: UIViewController {
         
         return request
     }
-    
+    //Set the maps before any route was added because if the user wants to search many routes
     func resetMapView(withNew directions: MKDirections) {
         mapView.removeOverlays(mapView.overlays)
         directionsArray.append(directions)
@@ -263,7 +268,7 @@ class HomeController: UIViewController {
 }
 
 extension HomeController: CLLocationManagerDelegate {
-    
+    //If your location changed with this method the map is going to go to the new location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         let center = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude)
@@ -300,11 +305,12 @@ extension HomeController: MKMapViewDelegate {
                 //TODO: Show alert informing the user
                 return
             }
-            
+            //Get the postal code and the street name from the center view
             let streetNumber = placemark.subThoroughfare ?? ""
             let streetName = placemark.thoroughfare ?? ""
             
             DispatchQueue.main.async {
+                //Set the postal code and the street name in a label
                 self.adressDirection.text = "\(streetName) \(streetNumber)"
             }
         }
