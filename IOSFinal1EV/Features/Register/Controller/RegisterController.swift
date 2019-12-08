@@ -84,7 +84,7 @@ class RegisterController: UIViewController {
     }
     
     func goToHomePage() {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "HomeController") as? HomeController {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "UINavigationController") as? UINavigationController {
             
             controller.modalTransitionStyle = .flipHorizontal
             controller.modalPresentationStyle = .fullScreen

@@ -20,10 +20,7 @@ class LoginController: UIViewController, GIDSignInDelegate {
     @IBAction func loginButtonAction(_ sender: Any) {
         loginUser()
     }
-    
-    @IBAction func loginButtonGoogle(_ sender: Any) {
-        GIDSignIn.sharedInstance()?.signIn()
-    }
+    @IBOutlet weak var googleAction: GIDSignInButton!
     
     var email: String = ""
     var id: String = ""
@@ -32,6 +29,7 @@ class LoginController: UIViewController, GIDSignInDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.layer.cornerRadius = 8
+        googleAction.layer.cornerRadius = 18
         
         GIDSignIn.sharedInstance().presentingViewController = self
         
@@ -141,7 +139,7 @@ class LoginController: UIViewController, GIDSignInDelegate {
     }
     
     func goToHomePage() {
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "HomeController") as? HomeController {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "UINavigationController") as? UINavigationController {
             
             controller.modalTransitionStyle = .flipHorizontal
             controller.modalPresentationStyle = .fullScreen

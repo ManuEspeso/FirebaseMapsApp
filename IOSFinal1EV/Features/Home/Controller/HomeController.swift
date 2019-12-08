@@ -20,7 +20,6 @@ class HomeController: UIViewController {
     @IBAction func goButtonTapped(_ sender: UIButton) {
         getDirections()
     }
-    @IBOutlet weak var userNameLabel: UILabel!
     @IBAction func profileButton(_ sender: Any) {
         goToProfile()
     }
@@ -37,6 +36,7 @@ class HomeController: UIViewController {
     
     var db: Firestore!
     var userEmail: String = ""
+    var userName: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +48,20 @@ class HomeController: UIViewController {
         mapView.delegate = self
         goButton.layer.cornerRadius = goButton.frame.size.height/2
         checkLocationServices()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        let label = UILabel(frame: CGRect(x: 10, y: 0, width: 50, height: 40))
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        
+        label.text = userName
+        label.numberOfLines = 2
+        label.textColor = .white
+        label.sizeToFit()
+        label.textAlignment = .center
+
+        self.navigationItem.titleView = label
     }
     
     func getEmailFromCoreData() {
@@ -76,7 +90,7 @@ class HomeController: UIViewController {
                         let usernameFirebase = document.data().index(forKey: "username")
                         let usernameValue = document.data()[usernameFirebase!].value as! String
                         
-                        self.userNameLabel.text = usernameValue
+                        self.userName = usernameValue
                     }
                     
                 }
